@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiSolidCircleHalf } from "react-icons/bi";
 import Cards from "../card/Cards";
+import FileModal from "../Modal/FileModal";
 
 const Incomplete = () => {
   return (
@@ -13,7 +14,7 @@ const Incomplete = () => {
           ></BiSolidCircleHalf>
           <span className=" font-semibold">Incomplete</span>
         </div>
-        <span className=" bg-slate-300 w-6 h-6 flex items-center justify-center rounded-sm">
+        <span className=" bg-slate-300 w-6 h-6 flex  justify-center rounded-sm">
           0
         </span>
       </div>
