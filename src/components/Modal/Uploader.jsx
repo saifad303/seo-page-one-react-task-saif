@@ -45,6 +45,10 @@ const Uploader = ({ id, taskType }) => {
       uploaderUrl = "http://localhost:5000/uploadFileToTodo";
     }
 
+    if (taskType === "doing") {
+      uploaderUrl = "http://localhost:5000/uploadFileDoing";
+    }
+
     try {
       await axios.post(uploaderUrl, {
         fileNames,
