@@ -9,7 +9,9 @@ const useFetchAllCompletedTask = () => {
   } = useQuery({
     queryKey: ["completed"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/completed`);
+      const res = await axios.get(
+        `https://seo-page-one-express-server.vercel.app/completed`
+      );
       return res.data;
     },
   });

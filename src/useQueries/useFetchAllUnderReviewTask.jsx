@@ -9,7 +9,9 @@ const useFetchAllToDoTask = () => {
   } = useQuery({
     queryKey: ["underreview"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/underreview`);
+      const res = await axios.get(
+        `https://seo-page-one-express-server.vercel.app/underreview`
+      );
       console.log("To do data = ", res.data);
       return res.data;
     },

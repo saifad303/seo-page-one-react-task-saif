@@ -9,7 +9,9 @@ const useFetchAllOverdoTask = () => {
   } = useQuery({
     queryKey: ["overdo"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/overdo`);
+      const res = await axios.get(
+        `https://seo-page-one-express-server.vercel.app/overdo`
+      );
       // console.log("res from axios", res);
       return res.data;
     },

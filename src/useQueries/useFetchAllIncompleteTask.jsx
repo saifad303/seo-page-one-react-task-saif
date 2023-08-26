@@ -9,7 +9,9 @@ const useFetchAllIncompleteTask = () => {
   } = useQuery({
     queryKey: ["incomplete"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/incomplete`);
+      const res = await axios.get(
+        `https://seo-page-one-express-server.vercel.app/incomplete`
+      );
       // console.log("res from axios", res);
       return res.data;
     },

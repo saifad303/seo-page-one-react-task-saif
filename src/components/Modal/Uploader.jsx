@@ -38,27 +38,33 @@ const Uploader = ({ id, taskType }) => {
     let uploaderUrl = "";
 
     if (taskType === "incomplete") {
-      uploaderUrl = "http://localhost:5000/uploadFileToIncomplete";
+      uploaderUrl =
+        "https://seo-page-one-express-server.vercel.app/uploadFileToIncomplete";
     }
 
     if (taskType === "todo") {
-      uploaderUrl = "http://localhost:5000/uploadFileToTodo";
+      uploaderUrl =
+        "https://seo-page-one-express-server.vercel.app/uploadFileToTodo";
     }
 
     if (taskType === "doing") {
-      uploaderUrl = "http://localhost:5000/uploadFileDoing";
+      uploaderUrl =
+        "https://seo-page-one-express-server.vercel.app/uploadFileDoing";
     }
 
     if (taskType === "underreview") {
-      uploaderUrl = "http://localhost:5000/uploadFileUnderReview";
+      uploaderUrl =
+        "https://seo-page-one-express-server.vercel.app/uploadFileUnderReview";
     }
 
     if (taskType === "completed") {
-      uploaderUrl = "http://localhost:5000/uploadFileCompleted";
+      uploaderUrl =
+        "https://seo-page-one-express-server.vercel.app/uploadFileCompleted";
     }
 
     if (taskType === "overdo") {
-      uploaderUrl = "http://localhost:5000/uploadFileOverdo";
+      uploaderUrl =
+        "https://seo-page-one-express-server.vercel.app/uploadFileOverdo";
     }
 
     try {
