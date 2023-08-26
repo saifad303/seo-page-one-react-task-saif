@@ -21,7 +21,7 @@ const Card = ({ task }) => {
     setModalOpen(false);
   };
 
-  console.log("all task = ", task);
+  // console.log("all task = ", task?.task);
 
   return (
     <div className=" bg-white w-full h-[140px] p-2 rounded-lg flex flex-col justify-between my-3">
@@ -85,7 +85,8 @@ const Card = ({ task }) => {
       >
         <FileModal isOpen={modalOpen} onClose={closeModal}>
           <h2 className="text-xl font-bold mb-4">Upload multiple files</h2>
-          <Uploader id={selectedId}></Uploader>
+
+          <Uploader id={selectedId} taskType={task?.task}></Uploader>
         </FileModal>
       </div>
     </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import useFetchAllIncompleteTask from "../../useQueries/useFetchAllIncompleteTask";
 
-const Uploader = ({ id }) => {
+const Uploader = ({ id, taskType }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const [, refetchAllIncompleteTask, isFetchAllIncompleteTask] =
@@ -12,6 +12,8 @@ const Uploader = ({ id }) => {
     const files = Array.from(e.target.files);
     setSelectedFiles(files);
   };
+
+  console.log("taskType = ", taskType);
 
   const uploadFiles = async () => {
     // const formData = new FormData();
@@ -33,8 +35,18 @@ const Uploader = ({ id }) => {
       return file.name;
     });
 
+    let uploaderUrl = "";
+
+    if (taskType === "incomplete") {
+      uploaderUrl = "http://localhost:5000/uploadFileToIncomplete";
+    }
+
+    if (taskType === "todo") {
+      uploaderUrl = "http://localhost:5000/uploadFileToTodo";
+    }
+
     try {
-      await axios.post("http://localhost:5000/uploadFileToIncomplete", {
+      await axios.post(uploaderUrl, {
         fileNames,
         id,
       });
