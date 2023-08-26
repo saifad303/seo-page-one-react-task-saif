@@ -49,6 +49,10 @@ const Uploader = ({ id, taskType }) => {
       uploaderUrl = "http://localhost:5000/uploadFileDoing";
     }
 
+    if (taskType === "underreview") {
+      uploaderUrl = "http://localhost:5000/uploadFileUnderReview";
+    }
+
     try {
       await axios.post(uploaderUrl, {
         fileNames,
