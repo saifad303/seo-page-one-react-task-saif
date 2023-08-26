@@ -12,7 +12,7 @@ const useFetchAllToDoTask = () => {
       const res = await axios.get(
         `https://seo-page-one-express-server.vercel.app/todo`
       );
-      console.log("To do data = ", res.data);
+      // console.log("To do data = ", res.data);
       return res.data;
     },
   });

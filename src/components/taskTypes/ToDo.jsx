@@ -7,7 +7,7 @@ import useFetchAllToDoTask from "../../useQueries/useFetchAllToDoTask";
 const ToDo = () => {
   const [allToDoTask, refetchAllToDoTask, isFetchAllToDoTask] =
     useFetchAllToDoTask();
-  console.log("allToDoTask", allToDoTask);
+  // console.log("allToDoTask", allToDoTask);
   return (
     <div className=" w-[400px] bg-slate-200 h-full py-3 px-2 overflow-x-auto shrink-0 rounded-md scrollbar-thin scrollbar-thumb-blue-900 scrollbar-track-gray-300">
       <div className=" flex items-center justify-between mb-6">

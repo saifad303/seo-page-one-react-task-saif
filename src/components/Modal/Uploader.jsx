@@ -29,7 +29,7 @@ const Uploader = ({ id, taskType }) => {
       return;
     }
 
-    console.log(selectedFiles);
+    // console.log(selectedFiles);
 
     const fileNames = selectedFiles.map((file, index) => {
       return file.name;
