@@ -57,6 +57,10 @@ const Uploader = ({ id, taskType }) => {
       uploaderUrl = "http://localhost:5000/uploadFileCompleted";
     }
 
+    if (taskType === "overdo") {
+      uploaderUrl = "http://localhost:5000/uploadFileOverdo";
+    }
+
     try {
       await axios.post(uploaderUrl, {
         fileNames,
