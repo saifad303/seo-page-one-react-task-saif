@@ -1,11 +1,49 @@
+import axios from "axios";
 import React, { useState } from "react";
+import useFetchAllIncompleteTask from "../../useQueries/useFetchAllIncompleteTask";
 
-const Uploader = () => {
+const Uploader = ({ id }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const [, refetchAllIncompleteTask, isFetchAllIncompleteTask] =
+    useFetchAllIncompleteTask();
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
     setSelectedFiles(files);
+  };
+
+  const uploadFiles = async () => {
+    // const formData = new FormData();
+
+    // selectedFiles.forEach((file) => {
+    //   formData.append("files", file);
+    // });
+
+    // console.log(formData);
+
+    if (selectedFiles.length === 0) {
+      alert("Please choose at least one file before uploading.");
+      return;
+    }
+
+    console.log(selectedFiles);
+
+    const fileNames = selectedFiles.map((file, index) => {
+      return file.name;
+    });
+
+    try {
+      await axios.post("http://localhost:5000/uploadFileToIncomplete", {
+        fileNames,
+        id,
+      });
+      refetchAllIncompleteTask();
+      setSelectedFiles([]);
+      alert("Files uploaded successfully!");
+    } catch (error) {
+      console.error("Error uploading files:", error);
+    }
   };
 
   return (
@@ -25,23 +63,23 @@ const Uploader = () => {
           Choose multiple Files
         </label>
       </div>
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <h2 className="text-lg font-semibold mb-2">Selected Files:</h2>
-            <div class="overflow-hidden">
-              <table class="min-w-full">
-                <thead class="bg-white border-b">
+            <div className="overflow-hidden">
+              <table className="min-w-full">
+                <thead className="bg-white border-b">
                   <tr>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       File
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       File Extension
                     </th>
@@ -60,11 +98,11 @@ const Uploader = () => {
                     const extension = file.name.split(".")[parts.length - 1];
 
                     return (
-                      <tr class="bg-gray-100 border-b" key={index}>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <tr className="bg-gray-100 border-b" key={index}>
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           {<p className=" font-semibold">{file.name}</p>}
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           {extension.toUpperCase()}
                         </td>
                       </tr>
@@ -72,7 +110,10 @@ const Uploader = () => {
                   })}
                 </tbody>
               </table>
-              <button className=" mt-7 p-2 bg-blue-600 text-white">
+              <button
+                onClick={uploadFiles}
+                className=" mt-7 p-2 bg-blue-600 text-white"
+              >
                 Upload to server
               </button>
             </div>

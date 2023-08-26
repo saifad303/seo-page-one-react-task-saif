@@ -8,16 +8,20 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { useState } from "react";
 import Uploader from "../Modal/Uploader";
 
-const Card = () => {
+const Card = ({ task }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(0);
 
-  const openModal = () => {
+  const openModal = (id) => {
+    setSelectedId(id);
     setModalOpen(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  console.log("all task = ", task);
 
   return (
     <div className=" bg-white w-full h-[140px] p-2 rounded-lg flex flex-col justify-between my-3">
@@ -58,10 +62,16 @@ const Card = () => {
         </div>
         <div
           className=" flex items-center gap-1 cursor-pointer"
-          onClick={openModal}
+          onClick={() => {
+            openModal(task._id);
+          }}
         >
           <AiOutlinePaperClip className=" w-5 h-5"></AiOutlinePaperClip>
-          <p className=" font-semibold">25</p>
+          <p className=" font-semibold">
+            {task?.files[0] === "" && task?.files.length === 1
+              ? 0
+              : task?.files.length - 1}
+          </p>
         </div>
         <div className=" flex items-center gap-1">
           <MdOutlineDateRange className=" w-5 h-5"></MdOutlineDateRange>
@@ -75,7 +85,7 @@ const Card = () => {
       >
         <FileModal isOpen={modalOpen} onClose={closeModal}>
           <h2 className="text-xl font-bold mb-4">Upload multiple files</h2>
-          <Uploader></Uploader>
+          <Uploader id={selectedId}></Uploader>
         </FileModal>
       </div>
     </div>
